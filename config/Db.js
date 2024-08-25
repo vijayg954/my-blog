@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const DbConnect = async () => {
+  const MONGO_URL=process.env.MONGO_URL
   try {
-    await mongoose.connect("mongodb://localhost:27017/myblog", {
+    await mongoose.connect(MONGO_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
