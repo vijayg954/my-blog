@@ -1,5 +1,5 @@
 import User from "../models/usermodel.js";
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const signUp = async (req, res) => {
@@ -13,7 +13,7 @@ const signUp = async (req, res) => {
       });
     }
     const newUser = new User({ name, email, password });
-    newUser.password = await bcrypt.hash(password, 10);
+    newUser.password = await bcryptjs.hash(password, 10);
     await newUser.save();
     res.status(200).json({
       success: true,
@@ -38,7 +38,7 @@ const login = async (req, res) => {
         message: "email or password is wrong backend",
       });
     }
-    const ispasswordEqual = await bcrypt.compare(password, user.password);
+    const ispasswordEqual = await bcryptjs.compare(password, user.password);
     if (!ispasswordEqual) {
       return res.status(403).json({
         success: false,
