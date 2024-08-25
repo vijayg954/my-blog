@@ -1,15 +1,12 @@
 import mongoose from "mongoose";
 
 const DbConnect = async () => {
-  const MONGO_URL=process.env.MONGO_URL
+  const MONGO_URL = process.env.MONGO_URL;
   try {
-    await mongoose.connect(MONGO_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("mongo connected");
+    await mongoose.connect(MONGO_URL);
+    console.log("MongoDB connected");
   } catch (err) {
-    console.log("mongo not connected internal server error", err);
+    console.log("MongoDB not connected. Internal server error:", err);
   }
 };
 
