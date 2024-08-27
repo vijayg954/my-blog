@@ -20,7 +20,7 @@ export const createBlog = async (req, res) => {
 
 export const getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find();
+    const blogs = await Blog.find().sort({ createdAt: -1 });;
     res.status(200).json({
       success: true,
       message: "all blog founded successfully",
